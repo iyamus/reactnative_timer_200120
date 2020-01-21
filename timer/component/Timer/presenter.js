@@ -10,7 +10,8 @@ export default class Timer extends React.Component {
         if (currentProps.isPlaying === false && nextProps.isPlaying === true) {
             //start the interval
             const timeInterval = setInterval(() => {
-                currentProps.addSecond()}, 1000);
+                currentProps.addSecond()
+            }, 1000);
             this.setState({
                 timeInterval
             })
@@ -25,13 +26,15 @@ export default class Timer extends React.Component {
 
     render() {
         const { isPlaying, elapsedTime, timeDuration, startTimer, restartTimer, addSecond } = this.props;
+        // console.log(`${this.props.timeDuration} check ${timeDuration}`);
+       
         return (
             <View style={styles.container}>
                 {/* 상단 시계와 배터리 부분의 색상 선정 */}
                 <StatusBar barStyle={"light-content"}></StatusBar>
 
                 <View style={styles.upper}>
-                    <Text style={styles.time}>24:00</Text>
+                    <Text style={styles.time}>{formatTime(timeDuration - elapsedTime)}</Text>
                 </View>
                 <View style={styles.lower}>
                     {!isPlaying
@@ -45,6 +48,19 @@ export default class Timer extends React.Component {
             </View>
         );
     }
+}
+
+function formatTime(time) {
+    var minutes = Math.floor(time / 60);
+    time -= minutes * 60;
+
+    var seconds = parseInt(time % 60, 10);
+
+    return `${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10
+        ? `0${seconds}`
+        : seconds}`;
+
+    return;
 }
 
 const styles = StyleSheet.create({

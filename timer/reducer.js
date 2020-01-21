@@ -28,7 +28,7 @@ const TIME_DURATION = 1500;
 const initState = {
     isPlaying: false,
     elapsedTime: 0,
-    timerDuration: TIME_DURATION
+    timeDuration: TIME_DURATION
 }
 
 // action = function
