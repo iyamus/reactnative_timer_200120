@@ -3,6 +3,12 @@ import { StyleSheet, Text, View, StatusBar, TouchableOpacity } from 'react-nativ
 import PropTypes from "prop-types";
 import { FontAwesome } from "@expo/vector-icons";
 
+// ##state 정보로 필요한 것들
+// isCounting: true | false --> 하단 버튼 분기
+// counterDuration: 전체 카운터 시간
+// elapsedTime: 카운터 시작 지점
+
+
 function Button({ iconName, onPress }) {
     return (
         // onPress={onPress} 
