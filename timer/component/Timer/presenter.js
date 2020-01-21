@@ -5,8 +5,26 @@ import Button from "../Button/index";
 
 
 export default class Timer extends React.Component {
+    componentWillReceiveProps(nextProps) {
+        const currentProps = this.props;
+        if (currentProps.isPlaying === false && nextProps.isPlaying === true) {
+            //start the interval
+            const timeInterval = setInterval(() => {
+                currentProps.addSecond()}, 1000);
+            this.setState({
+                timeInterval
+            })
+        } else if (currentProps.isPlaying === true && nextProps.isPlaying === false) {
+            //stop the interval
+            clearInterval(this.state.timeInterval);
+
+        }
+    }
+
+
+
     render() {
-        const { isPlaying, elapsedTime, timeDuration, startTimer, restartTimer } = this.props;
+        const { isPlaying, elapsedTime, timeDuration, startTimer, restartTimer, addSecond } = this.props;
         return (
             <View style={styles.container}>
                 {/* 상단 시계와 배터리 부분의 색상 선정 */}
