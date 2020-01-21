@@ -6,7 +6,7 @@ import Button from "../Button/index";
 
 export default class Timer extends React.Component {
     render() {
-        const { isPlaying, elapsedTime, timeDuration } = this.props;
+        const { isPlaying, elapsedTime, timeDuration, startTimer, restartTimer } = this.props;
         return (
             <View style={styles.container}>
                 {/* 상단 시계와 배터리 부분의 색상 선정 */}
@@ -17,10 +17,10 @@ export default class Timer extends React.Component {
                 </View>
                 <View style={styles.lower}>
                     {!isPlaying
-                        ? (<Button iconName="play-circle" onPress={() => { alert("1") }} />)
+                        ? (<Button iconName="play-circle" onPress={startTimer} />)
                         : null}
                     {isPlaying
-                        ? (<Button iconName="stop-circle" onPress={() => { alert("2") }} />)
+                        ? (<Button iconName="stop-circle" onPress={restartTimer} />)
                         : null}
                 </View>
 
